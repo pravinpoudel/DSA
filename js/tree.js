@@ -22,18 +22,25 @@ class BST {
             node.left = new Node(data);
             return;
           } else {
-            searchTree(node.left);
+            return searchTree(node.left);
           }
-        }
-        if (data > node.data) {
+        } else if (data > node.data) {
           if (node.right === null) {
             node.right = new Node(data);
             return;
           } else {
-            searchTree(node.right);
+            return searchTree(node.right);
           }
+        } else {
+          return null;
         }
       };
+      return searchTree(node);
     }
   }
 }
+
+const tree = new BST();
+tree.add(12);
+tree.add(14);
+console.log(tree);
