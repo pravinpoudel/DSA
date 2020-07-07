@@ -110,6 +110,15 @@ class BST {
   }
 }
 
+function findHeight(node) {
+  if (node === null) {
+    return -1;
+  }
+  left = findHeight(node.left);
+  right = findHeight(node.right);
+  return left > right ? ++left : ++right;
+}
+
 const tree = new BST();
 tree.add(12);
 tree.add(14);
