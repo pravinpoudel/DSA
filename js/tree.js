@@ -56,7 +56,6 @@ class BST {
   }
 
   isPresent(data) {
-    console.log(data);
     let current = this.root;
     let check = (current) => {
       if (data < current.data) {
@@ -77,6 +76,38 @@ class BST {
     };
     check(current);
   }
+
+  remove(data) {
+    function removeNode(node, data) {
+      if (node.data === null) {
+        return null;
+      }
+
+      if (node.data === data) {
+        if (node.right === null && node.left === null) {
+          return null;
+        } else if (node.right === null) {
+          return node.left;
+        } else if (node.left === null) {
+          return node.right;
+        }
+        let tempNode = node.right;
+        while (tempNode.left != null) {
+          tempNode = tempNode.left;
+        }
+        node.data = tempNodeData;
+        node.right = removeNode(node, tempNodeData);
+        return node;
+      } else if (node.data > data) {
+        node = removeNode(node.left, data);
+        return node;
+      } else if (node.data < data) {
+        node = removeNode(node.right, data);
+        return node;
+      }
+    }
+    this.root = removeNode(this.root, data);
+  }
 }
 
 const tree = new BST();
@@ -86,8 +117,9 @@ tree.add(22);
 tree.add(9);
 tree.add(12);
 tree.add(27);
-console.log(tree);
+
+console.log(tree.root);
 console.log(tree.findMax());
 console.log(tree.findMin());
-let presence = tree.isPresent(22);
-console.log(presence);
+tree.remove(22);
+console.log(tree.root);
