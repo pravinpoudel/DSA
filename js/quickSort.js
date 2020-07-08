@@ -1,10 +1,9 @@
-let array = [6, 5, 8, 9, 3, 10, 15, 12, 16];
-array.push(999999);
+let array = [10, 16, 8, 12, 15, 6, 3, 9, 5, 999999];
 
 function partition(l, h) {
   let pivotPoint = array[l];
   let i = l;
-  let j = h - 1;
+  let j = h;
   while (i < j) {
     do {
       i++;
@@ -18,10 +17,20 @@ function partition(l, h) {
       array[j] = temp;
     }
   }
-  array.splice(j + 1, 0, pivotPoint);
-  array.splice(l, 1);
+  array[l] = array[j];
+  array[j] = pivotPoint;
   return j;
 }
 
-let position = partition(0, 9);
+partition(0, 9);
+
+function quickSearch(l, h) {
+  if (l < h) {
+    let j = partition(l, h);
+
+    quickSearch(l, j - 1);
+    quickSearch(j + 1, h);
+  }
+}
+quickSearch(0, 9);
 console.log(array);
