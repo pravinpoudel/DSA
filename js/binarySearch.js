@@ -5,7 +5,6 @@ function binarySearch(arr, data) {
     let mid = Math.floor((low + high) / 2);
     console.log(arr[mid - 1]);
     if (arr[mid - 1] === data) {
-      console.log("data found");
       return mid - 1;
     } else if (arr[mid - 1] > data) {
       high = mid - 1;
